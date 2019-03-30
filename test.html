@@ -1,0 +1,67 @@
+<html>
+<head>
+<script>
+/* Summary : Number to possible key strings conversion */
+/* Key Mapping
+  '0': [],
+  '1': [],
+  '2': ['a', 'b', 'c'],
+  '3': ['d', 'e', 'f'],
+  '4': ['g', 'h', 'i'],
+  '5': ['j', 'k', 'l'],
+  '6': ['m', 'n', 'o'],
+  '7': ['p', 'q', 'r'],
+  '8': ['t', 'u', 'v'],
+  '9': ['w', 'x', 'y', 'z']
+*/
+
+/* For example
+  Input - 23
+  Output - ad, ae, af, bd, be, bf, cd, ce, cf
+*/
+
+
+console.log('Sample Console');
+
+const keyMap = [
+    [],
+    [],
+    ['a', 'b', 'c'],
+    ['d', 'e', 'f'],
+    ['g', 'h', 'i'],
+    ['j', 'k', 'l'],
+    ['m', 'n', 'o'],
+    ['p', 'q', 'r'],
+    ['t', 'u', 'v'],
+    ['w', 'x', 'y', 'z']
+];
+
+getWords = (numbers) => {
+  let ltr = [];
+  for(let i=0; i < numbers.length; i++) {
+    ltr.push(keyMap[numbers[i]]);
+  }
+  let prg = 0;
+  let crntWrd = '';
+  let l = numbers.length;
+  let fndWrds = [];
+  return phoneNumberLetterCombination(ltr, prg, crntWrd, l, fndWrds);
+}
+
+phoneNumberLetterCombination = (ltr, prg, crntWrd, l, fndWrds) => {
+  if(prg === l) {
+    fndWrds.push(crntWrd)
+  } else {
+      for(let i = 0; i < ltr[prg].length; i++) {
+        let nxtWrd = crntWrd + ltr[prg][i];
+        phoneNumberLetterCombination(ltr, prg+1, nxtWrd, l, fndWrds);
+      }
+  }
+  return fndWrds;
+}
+</script>
+</head>
+<body>
+</body>
+
+</html>
